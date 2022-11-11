@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserActionController;
+use App\Http\Controllers\ClientActionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('tableAccess', function () {
-    return view('userTable');
+Route::match(['get', 'post'], '/newUser', function () {
+    return view('users.registerUser');
 });
+
+Route::post('/addClient', function (){
+    return view('userClients.addNewClient');
+});
+
+Route::post('/changeClient', [ClientActionController::class, 'findEditClient']);
+
+Route::post('/confirmChange',[ClientActionController::class, 'editClient']);
+
+Route::match(['get', 'post'], '/login', [UserActionController::class, 'login'])->name('login');
+
+Route::post('/attemptRegister', [UserActionController::class, 'registerUser']);
+
+Route::post('/submitNewClient', [ClientActionController::class, 'newClient']);
+
+Route::post('/removeClient', [ClientActionController::class, 'findDeleteClient']);
+
+Route::post('/clientDeleted', [ClientActionController::class, 'confirmDelete']);
+

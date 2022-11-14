@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 /*
     User controller, for handling user requests to do with inputting and accessing user (not customer) data.
-    Inherits default controller class (required for controllers).
 */ 
 
 use App\Models\UserTable;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 // This exists to create the user object, I probably didn't need it in hindsight
 class userObj{
@@ -120,15 +119,17 @@ class UserActionController extends Controller{
             $userInput->username = $req->session()->get('un');
             $userInput->password = $req->session()->get('pw');
         }
-
+        Log::debug($userInput->username." ".$userInput->password);
         // Check username against saved users, get results where username matches (should only be one as usernames have to be unique both in the SQL table and per validation rules)
         $accArr = UserTable::where('Username', $userInput->username)
             ->get();
-            
+
         // Redirect back if username is incorrect (returns no result)
         if (empty($accArr[0])){
             return redirect('/')->with('redirectMsg', "Please ensure your username and password match an account registered with us");
         }
+
+        Log::debug("User Array isn't empty");
 
         $user = $accArr[0];
 
@@ -148,9 +149,11 @@ class UserActionController extends Controller{
             }
 
             // Send user to their client table with loaded data
-            return view('userClients.showUserClients', ['clientDetails' => $userTable]);
+            return response()
+            ->view('userClients.showUserClients', ['clientDetails' => $userTable], 200);
         }
         else{
+            Log::debug("It's the hash check");
             // Redirect to login page with 
             return redirect('/')->with('redirectMsg', "Please ensure your username and password match an account registered with us");
         }

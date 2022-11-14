@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('testCo')->insert([
+            'id' => null,
+            'CustomerName' => Str::random(10),
+            'CustomerEmail' => Str::random(10).'@gmail.com',
+            'CustomerAddress' => Str::random(10).' Avenue',
+            'MainContactName' => 'Mr '.Str::random(10),
+            'MainContactPhone' => '0118'.Str::random(7),
+        ]);
     }
 }

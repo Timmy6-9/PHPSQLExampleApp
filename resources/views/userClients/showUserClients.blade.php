@@ -8,7 +8,6 @@
 
         <script>
             function changeClient(customerName, mainContact, customerPhone, customerEmail, customerAddress, customerID){
-                //console.log(customerName);
                 document.getElementById("cn").innerHTML = customerName;
                 document.getElementById("mcn").innerHTML = mainContact;
                 document.getElementById("cpn").innerHTML = customerPhone;

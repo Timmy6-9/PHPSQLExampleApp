@@ -14,19 +14,19 @@
             @csrf
 
             <h2>Client Name:</h2>
-            <input class="border-2" type="text" value={{htmlspecialchars($clientToEdit->CustomerName)}} name="companyName">
+            <input class="border-2" type="text" value="{{htmlspecialchars($clientToEdit->CustomerName)}}" name="companyName">
             <br>
             <h2>Main Contact Name:</h2>
-            <input class="border-2" type="text" value={{htmlspecialchars($clientToEdit->MainContactName)}} name="contactName">
+            <input class="border-2" type="text" value="{{htmlspecialchars($clientToEdit->MainContactName)}}" name="contactName">
             <br>
             <h2>Contact Phone Number:</h2>
-            <input class="border-2" type="text" value={{htmlspecialchars($clientToEdit->MainContactPhone)}} name="phoneNumber">
+            <input class="border-2" type="text" value="{{htmlspecialchars($clientToEdit->MainContactPhone)}}" name="phoneNumber">
             <br>
             <h2>Client Email:</h2>
-            <input class="border-2" type="text" value={{htmlspecialchars($clientToEdit->CustomerEmail)}} name="emailAddress">
+            <input class="border-2" type="text" value="{{htmlspecialchars($clientToEdit->CustomerEmail)}}" name="emailAddress">
             <br>
             <h2>Client Address:</h2>
-            <input class="border-2" type="text" value={{htmlspecialchars($clientToEdit->CustomerAddress)}} name="companyAddress">
+            <input class="border-2" type="text" value="{{htmlspecialchars($clientToEdit->CustomerAddress)}}" name="companyAddress">
             <br>
             <input type="hidden" value={{htmlspecialchars($clientToEdit->id)}} name="companyID">
             <input class="border-2 border-gray-400 my-2 px-2 rounded-md bg-slate-200 hover:bg-slate-100 active:bg-slate-50" type="submit" value="Confirm Edit">  <input class="border-2 border-gray-400 my-2 px-2 rounded-md bg-slate-200 hover:bg-slate-100 active:bg-slate-50" type="submit" value="Cancel" formaction="login">

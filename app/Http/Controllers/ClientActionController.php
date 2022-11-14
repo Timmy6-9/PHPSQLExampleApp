@@ -35,7 +35,6 @@ class ClientActionController extends Controller{
     public function findEditClient(Request $req){
 
         $userObj = getUser($req->session()->get('un'));
-
         $editRow = DB::table($userObj->Organization)->where('id', $req->input('clientID'))->first();
 
         return view('userClients.editClient', ['clientToEdit' => $editRow]);
@@ -45,7 +44,6 @@ class ClientActionController extends Controller{
     public function editClient(Request $req){
         
         $userObj = getUser($req->session()->get('un'));
-
         DB::table($userObj->Organization)
             ->where('id', $req->input('companyID'))
             ->update(['CustomerName' => $req->input('companyName'), 'MainContactName' => $req->input('contactName'), 'MainContactPhone' => $req->input('phoneNumber'), 'CustomerEmail' => $req->input('emailAddress'), 'CustomerAddress' => $req->input('companyAddress')]);
